@@ -120,9 +120,22 @@ try:
 
     print("Scraping completed!")
 
+    # STEP 9: SQL QUERY
+
+    insert_query = """
+    INSERT INTO books (title, cost, rating, url)
+    VALUES (%s, %s, %s, %s)
+    """
+
+    #STEP 10: DF TO LIST CONVERSION
+
+    records = list(
+        df[["Title", "Cost", "Rating", "URL"]].itertuples(index=False, name=None)
+    )
+
     # STEP 9: POSGRESQL CONNECTION
 
-    
+
     connection = psycopg2.connect(
     host=os.getenv("DB_HOST"),
     database=os.getenv("DB_NAME"),
@@ -130,7 +143,19 @@ try:
     password=os.getenv("DB_PASSWORD"),
     port=os.getenv("DB_PORT")
     )
+    cursor = connection.cursor()
+    cursor.executemany(insert_query, records)
+    connection.commit()
+
+    print("Data inserted successfully!")
+
+    cursor.close()
+    connection.close()
+
     print("Connection successfull")
     
 except requests.exceptions.RequestException as e:
-    print("Something went wrong:", e)
+    print("Scraping error:", e)
+
+except psycopg2.Error as e:
+    print("Database error:", e)
