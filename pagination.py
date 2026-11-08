@@ -125,6 +125,7 @@ try:
     insert_query = """
     INSERT INTO books (title, cost, rating, url)
     VALUES (%s, %s, %s, %s)
+    ON CONFLICT (url) DO NOTHING
     """
 
     #STEP 10: DF TO LIST CONVERSION
