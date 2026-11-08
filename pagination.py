@@ -49,6 +49,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
+
 url = "https://books.toscrape.com/"
 
 # Starting page
