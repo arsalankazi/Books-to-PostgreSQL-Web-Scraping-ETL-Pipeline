@@ -1,0 +1,71 @@
+Priority 1: Must know
+Strong command
+
+Ye methods tumhe practically use karne aane chahiye.
+Method / Attribute	                 Use
+BeautifulSoup()             	HTML parse karna
+.find()	                        Ek element find karna
+.find_all()                 	Multiple elements find karna
+.select_one()	                CSS selector se ek element
+.select()	                    CSS selector se multiple elements
+.get()	                        href, src, class, id nikalna
+.get_text()	                    Clean text extraction
+.find_next_sibling()	        Related next element find karna 
+.descendants                    it is not a method . used to see all tags below a perticular tag
+.parent	                        it is not a method . Parent container access karne ke liye
+
+
+
+Attribute / Method           	Type	           Kya kaam karta hai?     	                        Output	            Iterable?	                    Kyu use karte hain?	                                             Example
+========================================================================================================================================================================================================================================================
+BeautifulSoup()	            Constructor	    HTML ko parse karke Soup object banata hai	    BeautifulSoup object	       Nahi	          HTML ko searchable structure mein convert karne ke liye	               soup = BeautifulSoup(html, "html.parser")
+
+.find()	                      Method	    Pehla matching element find karta hai	           Tag / None	               Nahi      	  Ek specific element chahiye ho	                                       soup.find("h2")
+
+.find_all()                   Method	    Saare matching elements find karta hai	        ResultSet (list-like)	       Haan	          Multiple matching elements chahiye hon	                               soup.find_all("p")
+
+.select_one()	              Method	    CSS selector se pehla matching element	           Tag / None	               Nahi	          Class, ID ya complex selector se ek element	                           soup.select_one(".price")
+
+.select()                  	  Method	    CSS selector se saare matching elements	        ResultSet (list-like)	       Haan	          CSS selector se multiple elements	                                       soup.select(".price")
+
+.get()	                      Method	    HTML attribute ki value deta hai	            String / list / None	    Usually nahi	  class, id, href jaise attributes nikalne ke liye	                       tag.get("href")
+
+.get_text()	                  Method	    Element ke andar ka text extract karta hai	       String	                   Nahi	          Text cleaning aur extraction ke liye	                                   tag.get_text(strip=True)
+
+.parent	                      Attribute	    Direct parent element deta hai	                   Tag / None                  Nahi	          Kisi element ka container find karne ke liye	                           tag.parent
+
+.descendants	              Attribute	    Saare nested descendants deta hai	               Iterator	                   Haan	          Element ke andar ki poori nested structure explore karne ke liye	       for x in tag.descendants:
+
+.find_next_sibling()	      Method	    Next matching sibling element find karta hai	   Tag / None	               Nahi	          Agla sibling element nikalne ke liye	                                   tag.find_next_sibling("p")
+
+
+Data Engineering mein actual use kaise hoga?
+Suppose Books to Scrape website se book data extract karna hai.
+
+HTML:
+<article class="product_pod">
+    <h3>
+        <a href="python-book.html">Python Book</a>
+    </h3>
+    <p class="price_color">£51.77</p>
+</article>
+
+
+Tumhara practical scraping code kuch aisa hoga:
+book = soup.select_one(".product_pod")
+title = book.select_one("h3 a").get_text(strip=True)
+price = book.select_one(".price_color").get_text(strip=True)
+link = book.select_one("h3 a").get("href")
+print(title)print(price)print(link)
+
+
+
+Output:
+Python Book
+£51.77
+python-book.html
+
+
+
+
+
