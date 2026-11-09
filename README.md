@@ -71,7 +71,7 @@ flowchart TD
 - Can scrape all available pages automatically.
 - Uses the website's next-page link to navigate through pagination.
 
-**Configuration in `pagination.py`:**
+**Configuration in `configurable_pagination.py`:**
 ```python
 pages_to_scrape = 5
 ```
@@ -167,12 +167,11 @@ flowchart TD
 ```text
 books-to-postgresql-etl/
 │
-├── pagination.py         # Main ETL script (Extract, Transform, Load)
-├── README.md             # Project documentation
-├── .gitignore            # Excludes .env and generated CSVs
-├── .env                  # Local database credentials (gitignored)
-│
-└── Books_*.csv           # Generated CSV exports (timestamped)
+├── configurable_pagination.py         # Main ETL script (Extract, Transform, Load)
+├── README.md                          # Project documentation
+├── .gitignore                         # Excludes .env and generated CSVs
+├── .env                               # Local database credentials (gitignored)
+└── Books_*.csv                        # Generated CSV exports (timestamped)
 ```
 
 **Note:** `.env` contains database credentials and must not be committed to GitHub. Generated CSV files can also be excluded from version control if they are only execution outputs.
@@ -258,7 +257,7 @@ If the `books` table and its unique URL constraint already exist, do not create 
 ### 6. Run the Pipeline
 
 ```bash
-python pagination.py
+python configurable_pagination.py
 ```
 
 ---
