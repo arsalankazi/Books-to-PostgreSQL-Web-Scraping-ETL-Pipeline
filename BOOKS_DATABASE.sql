@@ -15,3 +15,12 @@ SELECT rating, COUNT(*) AS BOOKS_FOUND
 FROM books
 GROUP BY rating;
 
+ALTER TABLE books
+ADD CONSTRAINT books_url_unique UNIQUE (url);
+
+
+SELECT url, COUNT(*)
+FROM books
+GROUP BY url
+HAVING COUNT(*) > 1;
+
