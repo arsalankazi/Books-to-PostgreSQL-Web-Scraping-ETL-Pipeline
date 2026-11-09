@@ -1,5 +1,13 @@
 # Books to PostgreSQL | Web Scraping ETL Pipeline
 
+<div align="center">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/PostgreSQL-15-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/Pandas-2.0%2B-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas" />
+  <img src="https://img.shields.io/badge/BeautifulSoup-4.12-green?style=for-the-badge&logo=python&logoColor=white" alt="BeautifulSoup" />
+  <img src="https://img.shields.io/badge/Requests-2.31-orange?style=for-the-badge&logo=python&logoColor=white" alt="Requests" />
+</div>
+
 A Python-based ETL pipeline that extracts book data from [Books to Scrape](https://books.toscrape.com/), validates and transforms the extracted records using Pandas, exports the processed data to CSV, and loads it into a PostgreSQL database.
 
 The project demonstrates a practical data engineering workflow involving web scraping, pagination, data validation, data transformation, database integration, and duplicate prevention.
